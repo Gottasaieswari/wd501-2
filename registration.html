@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>REGISTRAION-FORM</h1>
+        <style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:darkslategray;
+}     
+.container{
+    background-color:aqua;
+    margin-left:600px ;
+    margin-right:300px ;
+    width: 300px;
+    height: 300px;
+    padding: 20px 20px 20px 20px;
+    border: 2cm;
+    border-color: black;
+    border-style: double;
+}
+h1{
+    text-align: center;
+}
+.name{
+    font-size: medium;
+    margin-left: 30px;
+    margin-right: 20px;
+    font-style: oblique;
+    font-display:initial;
+    padding: 15px;;
+}
+.a{
+    background-color: coral;
+    margin-left: 600px;
+    margin-right: 300px;
+    padding: 20px 20px 20px 20px;
+    margin-left: 400px;
+    padding: 50px;
+    margin-bottom: 50px;
+    border: 2cm;
+    border-color:darkolivegreen;
+    border-style: solid;
+
+}
+#submit{
+    text-align: center;
+    border: 10px;
+    border-color: black;
+    color:black;
+    padding: 15px;
+    margin-left: 100px;
+    margin-right: 10px;
+    border-width: 15px;
+    background-color: blue;
+}
+        </style>
+    </head>
+    <body>
+        <form id="form">
+            <div class="container">
+                <div class="form-control">
+                <lable for="name"><b>NAME</b></lable>
+                <input type="name" placeholder="enter name" id="name" name="name" required><br><br>
+                <lable for="email"><b>Email</b></lable>
+                <input type="email" placeholder="enter email" id="email" name="email"required><br><br>
+                <lable for="password"><b>PASSWORD</b></lable>
+                <input type="password" placeholder="enter password" id="password" name="password" required><br><br>
+                <lable for="dob"><b>DOB</b></lable>
+                <input type="date" placeholder="enter dob" id="dob" name="dob" value=""min="1980-04-30" max="2005-04-30" required><br><br>
+                <lable for="phonenumber"><b>PHONENUMBER</b></lable>
+                <input type="phonenumber" placeholder="enter phonenumber" id="phonenumber" name="phonenumber" required><br><br>
+                <lable for="checkbox"><b>ACCEPTERMS</b></lable>
+                <input type="checkbox" id="checkbox" name="checkbox" required><br><br>
+                <button type="submit" id="submit"><b>SUBMIT</b></button><br><br>
+            </div>
+            </div>
+        </form>
+        <div class="a">
+            <h2>Entries</h2><br><br>
+        <table id="table">
+            <tr>
+                <th>name</th>
+                <th>email</th>
+                <th>password</th>
+                <th>dob</th>
+                <th>phonenumber</th>
+                <th>accepterms ?</th>
+            </tr>
+        </div>
+        </table>
+    </body>
+    <script>
+        var form = document.getElementById('form');
+        var tableBody = document.querySelector('#table tbody');
+        form.addEventListener('submit',function(event){
+            event.preventDefault();
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var dob = document.getElementById('dob').value;
+            var phonenumber = document.getElementById("phonenumber").value;
+            var checkbox = document.getElementById('checkbox').checked;
+            localStorage.setItem("Name",name);
+            localStorage.setItem("Email", email);
+            localStorage.setItem("Password", password);
+            localStorage.setItem("Date of Birth", dob);
+            localStorage.setItem("phonenumber",phonenumber);
+            localStorage.setItem("Accept terms?", checkbox);
+        var newRow = document.createElement('tr');
+        newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${password}</td>
+        <td>${dob}</td>
+        <td>${phonenumber}</td>
+        <td>${checkbox ? 'Yes' : 'No'}</td>`;
+        tableBody.appendChild(newRow);
+        form.reset();
+        });
+
+    </script>
+    </body>
+</html>
